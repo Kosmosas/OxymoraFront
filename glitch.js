@@ -135,7 +135,7 @@ function loadedFirst(){
 	function initialLoader() {
 		$('body').removeClass('noscroll');
 
-		var loadText = 'Oxymora 21-07-03_05';
+		var loadText = 'Oxymora 21-07-02_04';
 		var loaderDone = false;
 		$.each(loadText.split(''), function(i, letter){
 			setTimeout(function(){
