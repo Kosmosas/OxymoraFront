@@ -1,0 +1,209 @@
+
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
+<!-- CSS Reset -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+<!-- Milligram CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+
+<!-- Jquery  -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r70/three.js" type="text/javascript"></script> -->
+<!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-18/CopyShader.js" type="text/javascript"></script> -->
+<!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/141552/03_glitch.js" type="text/javascript"></script> -->
+<!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-18/EffectComposer.js" type="text/javascript"></script> -->
+<!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-18/RenderPass.js" type="text/javascript"></script> -->
+<!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-18/ShaderPass.js" type="text/javascript"></script> -->
+<!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-18/MaskPass.js" type="text/javascript"></script> -->
+<!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/141552/08_texturepass.js" type="text/javascript"></script> -->
+<script src="https://cdn.rawgit.com/sjhewitt/glitch.js/master/glitch.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" type="text/javascript"></script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js" type="text/javascript"></script> -->
+<!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-18/GlitchPass.js" type="text/javascript"></script> -->
+
+
+
+
+
+<!-- You should properly set the path from the main file. -->
+
+<style>
+
+@font-face {
+    font-family: testfont;
+    src: url("Neue Machina Regular 400.otf") format("opentype");
+}
+
+body {
+  background-color: #171914;
+  background-image: url("pattern2.png");
+  background-repeat: round;
+  color:#fff;
+  font-family:'testfont';
+}
+
+p.solid {border-style: solid; border-color: white;}
+
+ol {
+  counter-reset: item
+}
+li {
+  display: block
+}
+li:before {
+  content: counters(item, ".") " ";
+  counter-increment: item
+}
+
+a.button.button-clear {
+	color:white;
+}
+a.button  {
+	color:white;
+}
+
+h2, h3, h4, h5, #loader-text{
+	color:#E12426;
+}
+
+h2, h3, h4, h5, #loader-text{
+	color:#E12426;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+h2, h3, h4, h5, #loader-text{
+	color:#E12426;
+}
+
+#loader-text{
+	cursor: pointer;
+}
+
+
+
+p {
+    margin-bottom: 1rem;
+}
+
+</style>
+
+
+<div class="container" >
+
+  <div class="row" height="35px" style="margin-top:50px;margin-bottom:50px;">
+    <div class="column"  >
+	<!-- <img src="logo.png" alt="Italiano ferrero capuccino" height="35px" > -->
+	<!-- <p>2021-07-03</p> --><div id="initial-loader" class="padded"> <h3 id="loader-text" onclick="informacijaClick()"></h3>
+	</div>
+	</div>
+	
+	<div class="column column-30" >
+	
+	<a class="button button-clear" onclick="informacijaClick()">INFORMACIJA</a> 
+	<a class="button button-clear" onclick="taisyklesClick()">TAISYKLĖS</a> 
+	<a class="button button-clear" onclick="programaClick()" >PROGRAMA</a> 
+	<!-- <a class="button button-clear">KAIP ATVYKTI</a>  -->
+	<!-- <h1>Oxymora</h1> -->
+	</div>
+  </div>
+  
+  <div id="content">
+  </div>
+  
+</div>
+
+<script src="./glitch.js" ></script>
+<script>
+
+function checkPlantSize()
+{
+	if(document.getElementById("main-body")!=null){
+			  if ($(window).width() < 640 ) {
+				 document.getElementById("main-body").style.display = "none" ;
+			  }
+			  else {
+				document.getElementById("main-body").style.display = "block" ;
+				 }
+			 }			
+			
+}
+
+$("#content").load("./informacija.html", function(){loadedFirst(); checkPlantSize();});
+
+
+
+
+
+function changeContent(filename)
+{
+	$(function(){
+			var c = $("#content");
+			c.load(filename, function(newContent){
+			var newDiv = $('<div id="content"></div>');		
+			newDiv.append($(newContent));
+			var plant = newDiv.find('#main-body');
+			
+			if ($(window).width() < 640 ) {
+				plant.css('display', 'none');
+			  }
+			 	
+			
+			newDiv
+				c.glitch(newDiv, {
+						effect: "slide"
+					});
+			});	
+});
+		
+		
+}
+
+function informacijaClick()
+{
+changeContent("./informacija.html");
+	
+	<!-- document.getElementById("informacija").style.display = "block" ; -->
+	<!-- document.getElementById("taisykles").style.display = "none" ; -->
+	<!-- document.getElementById("programa").style.display = "none" ; -->
+}
+
+function taisyklesClick()
+{
+	changeContent("./taisykles.html");
+
+}
+
+function programaClick()
+{
+changeContent("./programa.html");
+
+	//document.getElementById("taisykles").style.display = "none" ;
+	//document.getElementById("informacija").style.display = "none" ;
+	//document.getElementById("programa").style.display = "block" ;
+}
+
+
+
+
+$(document).ready(function() {
+	$(window).resize(function() {
+	if(document.getElementById("main-body")!=null){
+	  if ($(window).width() < 640 ) {
+		 document.getElementById("main-body").style.display = "none" ;
+	  }
+	  else {
+		document.getElementById("main-body").style.display = "block" ;
+		 }
+	 }
+	});
+});
+
+</script>
+
