@@ -104,14 +104,27 @@ p {
 	</div>
 	</div>
 	
-	<div class="column column-30" >
+	<div class="column column-30" id="lituviu">
 	
 	<a class="button button-clear" onclick="informacijaClick()">INFORMACIJA</a> 
 	<a class="button button-clear" onclick="taisyklesClick()">TAISYKLĖS</a> 
-	<a class="button button-clear" onclick="programaClick()" >PROGRAMA</a> 
-	<!-- <a class="button button-clear">KAIP ATVYKTI</a>  -->
+	<a class="button button-clear" onclick="programaClick()" >PROGRAMA</a>  |
+	<a class="button button-clear" onclick="banglasClick()" >EN</a> 
 	<!-- <h1>Oxymora</h1> -->
 	</div>
+	
+	
+	<div class="column column-30" id="engliski" style="display:none">
+	
+	<a class="button button-clear" onclick="informacijaClick()">INFORMATION</a> 
+	<a class="button button-clear" onclick="taisyklesClick()">RULES</a> 
+	<a class="button button-clear" onclick="programaClick()" >LINE-UP</a>  |
+	<a class="button button-clear" onclick="banglasClick()" >LT</a> 
+	<!-- <h1>Oxymora</h1> -->
+	</div>
+	
+	
+	
   </div>
   
   <div id="content">
@@ -121,6 +134,20 @@ p {
 
 <script src="./glitch.js" ></script>
 <script>
+var english = false;
+
+function banglasClick()
+{
+	english = !english;
+	
+	if(english){
+		document.getElementById("lituviu").style.display = "none" ;
+		document.getElementById("engliski").style.display = "block" ;
+	} else {
+		document.getElementById("lituviu").style.display = "block" ;
+		document.getElementById("engliski").style.display = "none" ;
+	}
+}
 
 function checkPlantSize()
 {
@@ -167,26 +194,27 @@ function changeContent(filename)
 
 function informacijaClick()
 {
-changeContent("./informacija.html");
-	
-	<!-- document.getElementById("informacija").style.display = "block" ; -->
-	<!-- document.getElementById("taisykles").style.display = "none" ; -->
-	<!-- document.getElementById("programa").style.display = "none" ; -->
+	if(english){
+		changeContent("./informacija_en.html");
+	} else {
+		changeContent("./informacija.html");
+	}
 }
 
 function taisyklesClick()
 {
-	changeContent("./taisykles.html");
+	if(english){
+		changeContent("./taisykles_en.html");
+	} else {
+		changeContent("./taisykles.html");
+	}
+	
 
 }
 
 function programaClick()
 {
 changeContent("./programa.html");
-
-	//document.getElementById("taisykles").style.display = "none" ;
-	//document.getElementById("informacija").style.display = "none" ;
-	//document.getElementById("programa").style.display = "block" ;
 }
 
 
